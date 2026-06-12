@@ -82,4 +82,4 @@ sudo chmod -R 775 src
 
 ## ER図
 
-![ER図]
+![ER図](./images/ER図.png)
