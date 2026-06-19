@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * 一括代入可能なホワイトリスト。
      *
      * @var array<int, string>
      */
@@ -24,7 +24,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * シリアライズ時に非表示にする属性。
      *
      * @var array<int, string>
      */
@@ -34,11 +34,50 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * 型キャストする属性。
      *
      * @var array<string, string>
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * リレーションシップ: User has many Items.
+     */
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
+
+    /**
+     * リレーションシップ: User has many Likes.
+     */
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    /**
+     * リレーションシップ: User has one Profile.
+     */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+    /**
+     * リレーションシップ: User has many Comments.
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * リレーションシップ: User has many Purchases.
+     */
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
 }
