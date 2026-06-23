@@ -7,12 +7,17 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Condition、Category、User、ItemのSeederを実行する。
      *
      * @return void
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            ConditionSeeder::class,
+            CategorySeeder::class,
+            UserSeeder::class,
+            ItemSeeder::class,
+        ]);
     }
 }

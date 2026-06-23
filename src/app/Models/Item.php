@@ -22,7 +22,7 @@ class Item extends Model
         'price',
         'brand_name',
         'description',
-        'img_url',
+        'image_url',
     ];
 
     /**
