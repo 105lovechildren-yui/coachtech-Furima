@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 
 
-//ログイン機能はfortify
+//ログイン画面・登録画面の機能はfortify
 
 //商品一覧ページ
 Route::get('/', [ItemController::class, 'index'])->name('item.index');

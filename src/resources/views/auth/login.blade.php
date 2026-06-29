@@ -3,16 +3,16 @@
 @section('title', 'ログイン')
 
 @section('content')
-<div class="login">
-    <h2 class="login__title">ログイン</h2>
+<div class="auth">
+    <h2 class="auth__title">ログイン</h2>
 
-    <form class="login__form" action="{{ route('login') }}" method="POST">
+    <form class="auth__form" action="{{ route('login') }}" method="POST">
         @csrf
 
-        <div class="login__form-group">
-            <label class="login__label" for="email">メールアドレス</label>
+        <div class="auth__form-group">
+            <label class="auth__label" for="email">メールアドレス</label>
             <input
-                class="login__input"
+                class="auth__input"
                 type="email"
                 id="email"
                 name="email"
@@ -21,10 +21,10 @@
             {{-- TODO: バリデーション実装 --}}
         </div>
 
-        <div class="login__form-group">
-            <label class="login__label" for="password">パスワード</label>
+        <div class="auth__form-group">
+            <label class="auth__label" for="password">パスワード</label>
             <input
-                class="login__input"
+                class="auth__input"
                 type="password"
                 id="password"
                 name="password"
@@ -32,11 +32,11 @@
             {{-- TODO: バリデーション実装 --}}
         </div>
 
-        <button class="login__button" type="submit">ログインする</button>
+        <button class="auth__button" type="submit">ログインする</button>
     </form>
 
-    <div class="login__register">
-        <a class="login__register-link" href="{{ route('register') }}">会員登録はこちら</a>
+    <div class="auth__register">
+        <a class="auth__register-link" href="{{ route('register') }}">会員登録はこちら</a>
     </div>
 </div>
 @endsection
