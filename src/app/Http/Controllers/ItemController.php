@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Item;
 
 class ItemController extends Controller
 {
@@ -13,7 +15,15 @@ class ItemController extends Controller
      */
     public function index()
     {
-        return view('item.index');
+        if (Auth::check()) {
+            // ログインしている場合は、商品一覧(出品商品を除く)を取得する処理を追加する
+            $items = Item::where('user_id', '!=', Auth::id())->get();
+        } else {
+            // ログインしていない場合は、全ての商品を取得
+            $items = Item::all();
+        }
+
+        return view('item.index', compact('items'));
     }
 
     /**
@@ -47,5 +57,4 @@ class ItemController extends Controller
     {
         return view('item.show');
     }
-
 }

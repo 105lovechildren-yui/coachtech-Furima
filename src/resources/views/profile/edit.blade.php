@@ -89,5 +89,5 @@
         <button class="auth__button" type="submit">更新する</button>
     </form>
 
-
-    @endsection
+</div>
+@endsection

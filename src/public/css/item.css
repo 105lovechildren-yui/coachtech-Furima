@@ -1,0 +1,34 @@
+.item-list{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.item-list__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.item-list__card-image{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.item-list__card-image-wrap {
+    width: 100%;
+}
+.item-list__card-name {
+    margin-top: 5px;
+    padding-left: 0;
+    font-size: 18px; /* 仕様書に合わせて調整 */
+    font-weight: 500; /* 必要なら */
+}
+.item-list__card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+.item-list__tab-link {
+    text-decoration: none;
+    color: #5F5F5F;/* 仕様書に合わせる */
+}
