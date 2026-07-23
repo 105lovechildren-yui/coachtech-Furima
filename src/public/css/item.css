@@ -20,8 +20,8 @@
 .item-list__card-name {
     margin-top: 5px;
     padding-left: 0;
-    font-size: 18px; /* 仕様書に合わせて調整 */
-    font-weight: 500; /* 必要なら */
+    font-size: 18px;
+    font-weight: 500;
 }
 .item-list__card-link {
     display: block;
@@ -30,5 +30,21 @@
 }
 .item-list__tab-link {
     text-decoration: none;
-    color: #5F5F5F;/* 仕様書に合わせる */
+    color: #5F5F5F;
+}
+.item-list__tab{
+    display: flex;
+    gap: 40px;
+    padding: 20px 0 3px 48px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 32px;
+}
+.item-list__tab-item {
+    text-decoration: none;
+    color: #5f5f5f;
+    font-weight: bold;
+    font-size: 20px;
+}
+.item-list__tab-item--active {
+    color: #ff5555;
 }

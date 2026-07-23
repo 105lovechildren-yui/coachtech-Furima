@@ -15,14 +15,28 @@ class ItemController extends Controller
      */
     public function index()
     {
-        if (Auth::check()) {
-            // ログインしている場合は、商品一覧(出品商品を除く)を取得する処理を追加する
-            $items = Item::where('user_id', '!=', Auth::id())->get();
+        if (request('tab') === 'mylist') {
+            if (Auth::check()) {
+                // ログインしている場合は、自分がいいねした商品を取得
+                $items = Item::whereHas('likes', function ($query) {
+                    $query->where('user_id', Auth::id());
+                })
+                    ->where('user_id', '!=', Auth::id())
+                    ->get();
+            } else {
+                // ログインしていない場合は、ログイン画面にリダイレクトする
+                return redirect()->route('login');
+            }
         } else {
-            // ログインしていない場合は、全ての商品を取得
-            $items = Item::all();
-        }
+            // おすすめ商品を取得
+            if (Auth::check()) {
 
+                $items = Item::where('user_id', '!=', Auth::id())->get();
+            } else {
+
+                $items = Item::all();
+            }
+        }
         return view('item.index', compact('items'));
     }
 
