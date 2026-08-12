@@ -48,3 +48,273 @@
 .item-list__tab-item--active {
     color: #ff5555;
 }
+
+/* ===== 商品詳細画面 ===== */
+
+.item-detail {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 40px;
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+/* 商品画像エリア */
+.item-detail__image-area {
+    flex: 0 0 400px;
+    width: 400px;
+}
+
+.item-detail__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* 商品情報エリア */
+.item-detail__info-area {
+    flex: 1;
+    min-width: 0;
+}
+
+/* 商品名 */
+.item-detail__name {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0 0 8px;
+}
+
+/* ブランド名 */
+.item-detail__brand {
+    font-size: 14px;
+    color: #5f5f5f;
+    margin: 0 0 16px;
+}
+
+/* 価格 */
+.item-detail__price {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 0 0 16px;
+}
+
+.item-detail__price-tax {
+    font-size: 14px;
+    font-weight: normal;
+    color: #5f5f5f;
+    margin-left: 4px;
+}
+
+/* いいね・コメント数 */
+.item-detail__reactions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 20px;
+}
+
+.item-detail__like {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.item-detail__like-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.item-detail__like-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+.item-detail__like-count {
+    font-size: 14px;
+    color: #5f5f5f;
+}
+
+.item-detail__comment-count {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.item-detail__comment-icon img {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.item-detail__comment-num {
+    font-size: 14px;
+    color: #5f5f5f;
+}
+
+/* 購入手続きボタン */
+.item-detail__purchase {
+    margin-bottom: 32px;
+}
+
+.item-detail__purchase-btn {
+    display: block;
+    width: 100%;
+    padding: 14px 0;
+    background-color: #ff5555;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.item-detail__purchase-btn:hover {
+    opacity: 0.85;
+}
+
+/* セクション見出し */
+.item-detail__section-title {
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #333;
+    margin: 0 0 16px;
+}
+
+/* 商品説明 */
+.item-detail__description {
+    margin-bottom: 32px;
+}
+
+.item-detail__description-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #333;
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+/* 商品情報 */
+.item-detail__meta {
+    margin-bottom: 32px;
+}
+
+.item-detail__meta-list {
+    margin: 0;
+    padding: 0;
+}
+
+.item-detail__meta-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.item-detail__meta-label {
+    flex: 0 0 120px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.item-detail__meta-value {
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* カテゴリータグ */
+.item-detail__category-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+    background-color: #f9f9f9;
+}
+
+/* コメント一覧 */
+.item-detail__comments {
+    margin-bottom: 32px;
+}
+
+.item-detail__comment {
+    margin-bottom: 24px;
+}
+
+.item-detail__comment-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.item-detail__comment-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #ccc;
+    flex-shrink: 0;
+}
+
+.item-detail__comment-username {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.item-detail__comment-body {
+    font-size: 14px;
+    color: #333;
+    background-color: #f5f5f5;
+    padding: 12px;
+    border-radius: 4px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* コメントフォーム */
+.item-detail__comment-form-area {
+    margin-bottom: 40px;
+}
+
+.item-detail__comment-input {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    font-family: inherit;
+}
+
+.item-detail__comment-submit {
+    display: block;
+    width: 100%;
+    padding: 14px 0;
+    background-color: #ff5555;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.item-detail__comment-submit:hover {
+    opacity: 0.85;
+}
