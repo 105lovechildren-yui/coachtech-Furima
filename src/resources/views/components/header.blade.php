@@ -8,13 +8,15 @@
             </a>
         </div>
 
-        @auth
+
         {{--ログイン中の検索--}}
         <div class="header__search">
-            {{-- TODO: 商品検索機能実装時にフォームを追加 --}}
-            <input type="text" name="keyword" placeholder="なにをお探しですか？" class="header__search-input" value="{{ request('keyword') }}">
+            <form method="GET" action="{{ route('item.index') }}" class="header__search-form">
+                <input type="text" name="keyword" placeholder="なにをお探しですか？" class="header__search-input" value="{{ request('keyword') }}">
+            </form>
         </div>
 
+        @auth
         {{--ログイン中のナビゲーション--}}
         <nav class="header__nav">
             <form class="header__logout-form" method="POST" action="{{ route('logout') }}">

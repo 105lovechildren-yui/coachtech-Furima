@@ -15,6 +15,8 @@ class ItemController extends Controller
      */
     public function index()
     {
+        $keyword = request('keyword');
+
         if (request('tab') === 'mylist') {
             if (Auth::check()) {
                 // ログインしている場合は、自分がいいねした商品を取得
@@ -30,11 +32,26 @@ class ItemController extends Controller
         } else {
             // おすすめ商品を取得
             if (Auth::check()) {
+                // ログインしている場合は、自分が出品した商品を除外して検索対象にする
+                $items = Item::where('user_id', '!=', Auth::id());
 
-                $items = Item::where('user_id', '!=', Auth::id())->get();
+                // 検索キーワードがある場合は、商品名にキーワードが含まれる商品を取得
+                if ($keyword) {
+                    $items->where('name', 'like', '%' . $keyword . '%');
+                }
+                // 条件に合う商品を取得
+                $items = $items->get();
             } else {
+                // ログインしていない場合は、全ての商品を対象にする
+                $items = Item::query();
 
-                $items = Item::all();
+                // 検索キーワードがある場合は、商品名にキーワードが含まれる商品を取得
+                if ($keyword) {
+                    $items = $items->where('name', 'like', '%' . $keyword . '%');
+                }
+                $items = $items->get();
+
+                // TODO: 商品詳細画面実装後、マイリストでも検索キーワードが保持されるよう実装・動作確認
             }
         }
         return view('item.index', compact('items'));
