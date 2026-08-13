@@ -65,6 +65,25 @@ sudo chmod -R 775 src
 
 ※ 本環境では、docker-compose exec -u www-data を使用すると、ファイルの所有者が www-data となり、ホスト側で編集できなくなる可能性があります。そのため、開発時は -u オプションを付けずにコマンドを実行しています。
 
+## テストユーザー
+
+・出品者テストユーザー1
+
+- メールアドレス：seller1@example.com
+- パスワード：password
+- 出品商品：5商品
+
+・出品者テストユーザー2
+
+- メールアドレス：seller2@example.com
+- パスワード：password
+- 出品商品：5商品
+
+・購入者テストユーザー
+
+- メールアドレス：buyer@example.com
+- パスワード：password
+
 ## 開発環境
 
 ・ログインページ:http://localhost/login
