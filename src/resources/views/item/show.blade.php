@@ -30,12 +30,21 @@
 
             {{-- TODO: いいね済みかどうかでアイコンの見た目を切り替える --}}
             <div class="item-detail__like">
-                {{-- TODO: いいね・いいね解除の非同期処理を実装する --}}
-                <button class="item-detail__like-btn" type="button">
-                    <img src="{{ asset('images/ハートロゴ_デフォルト.png') }}" alt="いいねアイコン">
-                </button>
-                <span class="item-detail__like-count">{{ $item->likes->count() }}</span>
+                <form action="{{ route('item.like', $item->id) }}" method="POST" class="like-form">
+                    @csrf
+
+                    <button class=" item-detail__like-btn" type="submit">
+                        <img class="like-icon"
+                            src="{{ asset($isLiked ? 'images/ハートロゴ_ピンク.png' : 'images/ハートロゴ_デフォルト.png') }}"
+                            alt="いいねアイコン">
+                    </button>
+                </form>
+
+                <span class="item-detail__like-count like-count">
+                    {{ $item->likes->count() }}
+                </span>
             </div>
+
             <div class="item-detail__comment-count">
                 <span class="item-detail__comment-icon"><img src="{{ asset('images/ふきだしロゴ.png') }}" alt="コメント"></span>
                 <span class="item-detail__comment-num">{{ $item->comments->count() }}</span>
@@ -109,3 +118,5 @@
 
 </div>{{-- /.item-detail --}}
 @endsection
+
+<script src="{{ asset('js/item.js') }}"></script>

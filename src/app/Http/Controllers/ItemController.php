@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
+use App\Models\Like;
 
 class ItemController extends Controller
 {
@@ -88,6 +89,46 @@ class ItemController extends Controller
     {
         $item = Item::findOrFail($id);
 
-        return view('item.show', compact('item'));
+        $isLiked = false;
+
+        // ログインしているユーザーがこの商品にいいねしているかどうかを判定
+        if (Auth::check()) {
+            $isLiked = $item->likes()
+                ->where('user_id', Auth::id())
+                ->exists();
+        }
+
+        return view('item.show', compact('item', 'isLiked'));
+    }
+
+    public function like($id)
+    {
+        $item = Item::findOrFail($id);
+
+        $like = $item->likes()
+            ->where('user_id', Auth::id())
+            ->first();
+
+        if ($like) {
+            // すでにいいね済み → 解除
+            $like->delete();
+            $isLiked = false;
+        } else {
+            // まだいいねしていない → 登録
+            $like = new Like();
+            $like->user_id = Auth::id();
+            $like->item_id = $item->id;
+            $like->save();
+            $isLiked = true;
+        }
+
+        $likeCount = $item->likes()->count();
+
+        return response()->json(
+            [
+                'isLiked' => $isLiked,
+                'likeCount' => $likeCount,
+            ]
+        );
     }
 }
