@@ -26,6 +26,13 @@
     gap: 8px;
 }
 
+.header__search-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+}
+
 .header__logo{
     padding: 16px;
 }

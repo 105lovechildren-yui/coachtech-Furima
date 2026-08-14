@@ -49,6 +49,12 @@
     color: #ff5555;
 }
 
+.like-form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
 /* ===== 商品詳細画面 ===== */
 
 .item-detail {
@@ -128,11 +134,13 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    line-height: 0;
 }
 
 .item-detail__like-btn img {
     width: 24px;
     height: 24px;
+    display: block;
 }
 
 .item-detail__like-count {
