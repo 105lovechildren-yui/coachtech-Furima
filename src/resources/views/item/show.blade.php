@@ -28,7 +28,6 @@
         {{-- いいね・コメント表示エリア --}}
         <div class="item-detail__reactions">
 
-            {{-- TODO: いいね済みかどうかでアイコンの見た目を切り替える --}}
             <div class="item-detail__like">
                 <form action="{{ route('item.like', $item->id) }}" method="POST" class="like-form">
                     @csrf
@@ -87,9 +86,9 @@
 
         {{-- コメント一覧 --}}
         <section class="item-detail__comments">
-            {{-- TODO: $item->comments->count() でコメント数を表示する --}}
+
             <h2 class="item-detail__section-title">コメント({{ $item->comments->count() }})</h2>
-            {{-- TODO: $item->comments を foreach で繰り返し表示する --}}
+
             @foreach ($item->comments as $comment)
             <div class="item-detail__comment">
                 <div class="item-detail__comment-user">
@@ -97,7 +96,7 @@
                     <img class="item-detail__comment-avatar" src="" alt="ユーザーアバター">
                     <span class="item-detail__comment-username">{{ $comment->user->name }}</span>
                 </div>
-                <p class="item-detail__comment-body">{{ $comment->comment }}</p>
+                <p class="item-detail__comment-body">{{ $comment->content }}</p>
             </div>
             @endforeach
         </section>
@@ -105,11 +104,13 @@
         {{-- コメント入力欄・コメント送信ボタン --}}
         <section class="item-detail__comment-form-area">
             <h2 class="item-detail__section-title">商品へのコメント</h2>
-            {{-- TODO: 未ログイン時はコメントフォームを非表示にしてログインを促す --}}
-            <form class="item-detail__comment-form" action="" method="POST">
+
+            <form class="item-detail__comment-form" action="{{ route('item.comment', $item->id) }}" method="POST">
                 @csrf
-                {{-- TODO: action に comments.store ルートを設定する --}}
-                <textarea class="item-detail__comment-input" name="comment" rows="5"></textarea>
+                <textarea class="item-detail__comment-input" name="comment" rows="5">{{ old('comment') }}</textarea>
+                @error('comment')
+                <p class="item-detail__comment-error">{{ $message }}</p>
+                @enderror
                 <button class="item-detail__comment-submit" type="submit">コメントを送信する</button>
             </form>
         </section>

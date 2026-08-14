@@ -24,5 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/sell', [ItemController::class, 'store'])->name('item.store');
     //いいね機能
     Route::post('/item/{item_id}/like', [ItemController::class, 'like'])->name('item.like');
+    //コメント機能
+    Route::post('/item/{item_id}/comment', [ItemController::class, 'comment'])->name('item.comment');
 });
 

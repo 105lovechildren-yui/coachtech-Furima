@@ -318,3 +318,11 @@
 .item-detail__comment-submit:hover {
     opacity: 0.85;
 }
+
+.item-detail__comment-error {
+    color: #FF5555;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}

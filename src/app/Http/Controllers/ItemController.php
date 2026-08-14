@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\CommentRequest;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\Like;
+use App\Models\Comment;
 
 class ItemController extends Controller
 {
@@ -130,5 +132,18 @@ class ItemController extends Controller
                 'likeCount' => $likeCount,
             ]
         );
+    }
+
+    public function comment(CommentRequest $request, $id)
+    {
+        $item = Item::findOrFail($id);
+
+        $comment = new Comment();
+        $comment->user_id = Auth::id();
+        $comment->item_id = $item->id;
+        $comment->content = $request->comment;
+        $comment->save();
+
+        return redirect()->route('item.show', $id);
     }
 }
