@@ -8,7 +8,9 @@
     {{-- 商品画像エリア --}}
     <div class="item-detail__image-area">
 
-        <img class="item-detail__image" src="{{ $item->image_url }}" alt="商品画像">
+        <img class="item-detail__image"
+            src="{{ Str::startsWith($item->image_url, 'http') ? $item->image_url : asset('storage/' . $item->image_url) }}"
+            alt="商品画像">
     </div>
 
     {{-- 商品情報エリア --}}

@@ -24,7 +24,7 @@
             <a href="{{ route('item.show', $item->id) }}" class="item-list__card-link">
                 <div class="item-list__card-image-wrap">
                     <img
-                        src="{{ ($item->image_url) }}"
+                        src="{{ \Illuminate\Support\Str::startsWith($item->image_url, 'http') ? $item->image_url : asset('storage/' . $item->image_url) }}"
                         alt="{{ $item->name }}"
                         class="item-list__card-image">
                     {{-- TODO: Controllerで売却済み判定を追加したら有効化する --}}

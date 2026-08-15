@@ -1,13 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests\CommentRequest;
+use App\Http\Requests\ExhibitionRequest;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\Like;
 use App\Models\Comment;
+use App\Models\Condition;
+use App\Models\Category;
+
+
 
 class ItemController extends Controller
 {
@@ -67,7 +73,10 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('item.create');
+        $categories = Category::all();
+        $conditions = Condition::all();
+
+        return view('item.create', compact('categories', 'conditions'));
     }
 
     /**
@@ -76,9 +85,28 @@ class ItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ExhibitionRequest $request)
     {
-        return redirect()->route('item.index');
+        $validated = $request->validated();
+
+        //画像保存
+        $imagePath = $request->file('image')->store('item_images', 'public');
+
+        //商品保存
+        $item = Item::create([
+            'user_id' => Auth::id(),
+            'condition_id' => $validated['condition_id'],
+            'name' => $validated['name'],
+            'brand_name' => $validated['brand_name'] ?? null,
+            'description' => $validated['description'],
+            'price' => $validated['price'],
+            'image_url' => $imagePath,
+        ]);
+
+        //カテゴリー紐付け
+        $item->categories()->attach($validated['categories']);
+
+        return redirect('/')->with('success', '商品を出品しました。');
     }
 
     /**
@@ -134,6 +162,7 @@ class ItemController extends Controller
         );
     }
 
+    //コメント
     public function comment(CommentRequest $request, $id)
     {
         $item = Item::findOrFail($id);
@@ -146,4 +175,6 @@ class ItemController extends Controller
 
         return redirect()->route('item.show', $id);
     }
+
+
 }
