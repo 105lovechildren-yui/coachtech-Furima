@@ -26,8 +26,7 @@
 
 
             <a href="{{ route('profile.edit') }}" class="header__nav-btn">マイページ</a>
-            {{-- TODO: 出品ページ作成時にroute('item.create')へ変更 --}}
-            <a href="#" class="header__nav-link">出 品</a>
+            <a href="{{ route('item.create') }}" class="header__nav-link">出 品</a>
         </nav>
         @endauth
     </div>
