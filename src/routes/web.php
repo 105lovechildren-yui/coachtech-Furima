@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PurchaseController;
 
 //ログイン画面・登録画面の機能はfortify
 
@@ -26,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/item/{item_id}/like', [ItemController::class, 'like'])->name('item.like');
     //コメント機能
     Route::post('/item/{item_id}/comment', [ItemController::class, 'comment'])->name('item.comment');
-
+    //商品購入画面
+    Route::get('/item/{item_id}/purchase', [PurchaseController::class, 'create'])->name('purchase.create');
+    //商品購入
+    Route::post('/item/{item_id}/purchase', [PurchaseController::class, 'store'])->name('purchase.store');
 });
-
