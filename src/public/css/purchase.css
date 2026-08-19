@@ -207,3 +207,82 @@
         width: 100%;
     }
 }
+
+/* ================================================
+   address page
+   ================================================ */
+
+.address {
+    max-width: 680px;
+    margin: 40px auto;
+    padding: 0 24px 60px;
+}
+
+.address__title {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 40px;
+}
+
+.address__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.address__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.address__label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.address__input {
+    width: 100%;
+    height: 45px;
+    padding: 0 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.address__input:focus {
+    outline: none;
+    border-color: #888;
+}
+
+.address__button {
+    display: block;
+    width: 100%;
+    height: 50px;
+    margin-top: 16px;
+    background-color: #e9453f;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.address__button:hover {
+    background-color: #c73530;
+}
+
+@media (max-width: 768px) {
+    .address {
+        padding: 0 16px 40px;
+    }
+
+    .address__title {
+        font-size: 26px;
+    }
+}

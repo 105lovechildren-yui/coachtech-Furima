@@ -38,12 +38,11 @@
             <div class="purchase__shipping">
                 <div class="purchase__shipping-header">
                     <h2 class="purchase__section-title">配送先</h2>
-                    {{-- TODO: 配送先変更画面へ接続 --}}
-                    <a class="purchase__shipping-change" href="#">変更する</a>
+                    <a class="purchase__shipping-change" href="{{ route('purchase.address.edit', $item->id) }}">変更する</a>
                 </div>
                 <div class="purchase__address">
-                    <p class="purchase__address-postal">〒 XXX-YYYY</p>
-                    <p class="purchase__address-detail">ここには住所と建物が入ります</p>
+                    <p class="purchase__address-postal">〒 {{ $profile->postal_code }}</p>
+                    <p class="purchase__address-detail">{{ $profile->address }} {{ $profile->building }}</p>
                 </div>
             </div>
 

@@ -31,4 +31,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/item/{item_id}/purchase', [PurchaseController::class, 'create'])->name('purchase.create');
     //商品購入
     Route::post('/item/{item_id}/purchase', [PurchaseController::class, 'store'])->name('purchase.store');
+    //配送先変更画面
+    Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'edit'])->name('purchase.address.edit');
+    // 配送先更新
+    Route::patch('/purchase/address/{item_id}', [PurchaseController::class, 'update'])->name('purchase.address.update');
 });
