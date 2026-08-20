@@ -6,7 +6,6 @@
 <div class="address">
     <h1 class="address__title">住所の変更</h1>
 
-    {{-- TODO: AddressRequest実装後にバリデーションエラー表示を追加 --}}
     <form class="address__form" method="POST" action="{{ route('purchase.address.update', $item->id) }}">
         @csrf
         @method('PATCH')
@@ -19,6 +18,10 @@
                 id="postal_code"
                 name="postal_code"
                 value="{{ old('postal_code', $profile->postal_code) }}">
+
+            @error('postal_code')
+            <p class="address__error">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="address__field">
@@ -29,6 +32,9 @@
                 id="address"
                 name="address"
                 value="{{ old('address', $profile->address) }}">
+            @error('address')
+            <p class="address__error">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="address__field">
@@ -39,9 +45,11 @@
                 id="building"
                 name="building"
                 value="{{ old('building', $profile->building) }}">
+            @error('building')
+            <p class="address__error">{{ $message }}</p>
+            @enderror
         </div>
 
-        {{-- TODO: 更新処理（PurchaseController::update()）実装後に動作確認 --}}
         <button class="address__button" type="submit">更新する</button>
     </form>
 </div>

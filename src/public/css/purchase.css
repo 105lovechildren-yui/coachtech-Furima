@@ -286,3 +286,9 @@
         font-size: 26px;
     }
 }
+
+.address__error {
+    color: #ff5555;
+    font-size: 14px;
+    margin-top: 6px;
+}
