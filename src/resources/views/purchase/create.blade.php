@@ -28,9 +28,20 @@
                 {{-- TODO: PurchaseRequest実装後、支払い方法のバリデーションエラー表示を追加 --}}
                 <select class="purchase__select" name="payment_method">
                     <option value="">選択してください</option>
-                    <option value="convenience">コンビニ払い</option>
-                    <option value="card">カード支払い</option>
+                    <option value="convenience"
+                        {{ old('payment_method') == 'convenience' ? 'selected' : '' }}>
+                        コンビニ払い
+                    </option>
+
+                    <option value="card"
+                        {{ old('payment_method') == 'card' ? 'selected' : '' }}>
+                        カード支払い
+                    </option>
                 </select>
+
+                @error('payment_method')
+                <p class="purchase__error">{{ $message }}</p>
+                @enderror
             </div>
 
             <hr class="purchase__divider">

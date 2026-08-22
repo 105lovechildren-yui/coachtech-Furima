@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AddressRequest;
+use App\Http\Requests\PurchaseRequest;
+use App\Models\Purchase;
 
 class PurchaseController extends Controller
 {
@@ -40,5 +42,25 @@ class PurchaseController extends Controller
         $profile->update($request->validated());
 
         return redirect()->route('purchase.create', $item_id);
+    }
+
+    /**
+     * 商品を購入する
+     */
+    public function store(PurchaseRequest $request, $item_id)
+    {
+        $validated = $request->validated();
+        $profile = Auth::user()->profile;
+
+        Purchase::create([
+            'user_id' => Auth::id(),
+            'item_id' => $item_id,
+            'payment_method' => $validated['payment_method'],
+            'shipping_postal_code' => $profile->postal_code,
+            'shipping_address' => $profile->address,
+            'shipping_building' => $profile->building,
+        ]);
+
+        return redirect('/');
     }
 }
