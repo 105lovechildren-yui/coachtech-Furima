@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+    //マイページ（表示）
+    public function index()
+    {
+        $user = Auth::user();
+        $items = $user->items;
+
+        return view('profile.mypage', compact('user', 'items'));
+    }
+
     //初回登録時のプロフィール設定画面
     public function edit()
     {

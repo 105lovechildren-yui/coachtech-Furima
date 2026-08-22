@@ -15,6 +15,8 @@ Route::get('/search', [ItemController::class, 'search'])->name('item.search');
 Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('item.show');
 
 Route::middleware('auth')->group(function () {
+    // マイページ（表示）
+    Route::get('/mypage', [ProfileController::class, 'index'])->name('profile.index');
     //プロフィール設定画面
     Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     //プロフィール更新処理

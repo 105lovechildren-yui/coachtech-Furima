@@ -25,7 +25,7 @@
             </form>
 
 
-            <a href="{{ route('profile.edit') }}" class="header__nav-btn">マイページ</a>
+            <a href="{{ route('profile.index') }}" class="header__nav-btn">マイページ</a>
             <a href="{{ route('item.create') }}" class="header__nav-link">出 品</a>
         </nav>
         @endauth
