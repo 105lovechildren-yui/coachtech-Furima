@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\ExhibitionRequest;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\Like;
@@ -29,7 +28,8 @@ class ItemController extends Controller
         if (request('tab') === 'mylist') {
             if (Auth::check()) {
                 // ログインしている場合は、自分がいいねした商品を取得
-                $items = Item::whereHas('likes', function ($query) {
+                $items = Item::with('purchase')
+                ->whereHas('likes', function ($query) {
                     $query->where('user_id', Auth::id());
                 })
                     ->where('user_id', '!=', Auth::id())
@@ -42,7 +42,7 @@ class ItemController extends Controller
             // おすすめ商品を取得
             if (Auth::check()) {
                 // ログインしている場合は、自分が出品した商品を除外して検索対象にする
-                $items = Item::where('user_id', '!=', Auth::id());
+                $items = Item::with('purchase')->where('user_id', '!=', Auth::id());
 
                 // 検索キーワードがある場合は、商品名にキーワードが含まれる商品を取得
                 if ($keyword) {
@@ -52,7 +52,7 @@ class ItemController extends Controller
                 $items = $items->get();
             } else {
                 // ログインしていない場合は、全ての商品を対象にする
-                $items = Item::query();
+                $items = Item::with('purchase');
 
                 // 検索キーワードがある場合は、商品名にキーワードが含まれる商品を取得
                 if ($keyword) {

@@ -27,10 +27,10 @@
                         src="{{ \Illuminate\Support\Str::startsWith($item->image_url, 'http') ? $item->image_url : asset('storage/' . $item->image_url) }}"
                         alt="{{ $item->name }}"
                         class="item-list__card-image">
-                    {{-- TODO: Controllerで売却済み判定を追加したら有効化する --}}
-                    {{-- @if ($item->sold)
+
+                    @if ($item->purchase)
                     <span class="item-list__card-badge">Sold</span>
-                    @endif --}}
+                    @endif
                 </div>
                 <p class="item-list__card-name">{{ $item->name }}</p>
 
