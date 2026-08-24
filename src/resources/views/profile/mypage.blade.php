@@ -25,8 +25,8 @@
 
     {{-- タブナビゲーション --}}
     <nav class="mypage__tab">
-        <a href="#" class="mypage__tab-item mypage__tab-item--active">出品した商品</a>
-        <a href="#" class="mypage__tab-item">購入した商品</a>
+        <a href="{{ route('profile.index') }}" class="mypage__tab-item {{ request('page') !== 'buy' ? 'mypage__tab-item--active' : '' }}">出品した商品</a>
+        <a href="{{ route('profile.index', ['page' => 'buy']) }}" class="mypage__tab-item {{ request('page') === 'buy' ? 'mypage__tab-item--active' : '' }}">購入した商品</a>
     </nav>
 
     {{-- 商品グリッド --}}

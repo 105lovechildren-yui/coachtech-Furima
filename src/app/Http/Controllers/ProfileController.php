@@ -12,7 +12,18 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $items = $user->items;
+
+        if (request('page') === 'buy') {
+            //購入した商品
+            $purchases = $user->purchases;
+
+            $items = $purchases->map(function ($purchase) {
+                return $purchase->item;
+        });
+        } else {
+            //出品した商品
+            $items = $user->items;
+        }
 
         return view('profile.mypage', compact('user', 'items'));
     }
