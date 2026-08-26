@@ -55,7 +55,13 @@
         {{-- 購入手続きボタン --}}
         {{-- TODO: 自分の出品商品・売却済みの場合はボタンを非表示にする --}}
         <div class="item-detail__purchase">
+            @if ($item->purchase)
+            <button class="item-detail__purchase-btn item-detail__purchase-btn--sold" type="button" disabled>
+                売り切れました
+            </button>
+            @else
             <a class="item-detail__purchase-btn" href="{{ route('purchase.create', $item->id) }}">購入手続きへ</a>
+            @endif
         </div>
 
         {{-- 商品説明 --}}

@@ -117,7 +117,7 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        $item = Item::findOrFail($id);
+        $item = Item::with('purchase')->findOrFail($id);
 
         $isLiked = false;
 

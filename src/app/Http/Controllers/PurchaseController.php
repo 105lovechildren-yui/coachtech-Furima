@@ -49,6 +49,12 @@ class PurchaseController extends Controller
      */
     public function store(PurchaseRequest $request, $item_id)
     {
+        $item = Item::with('purchase')->findOrFail($item_id);
+
+        if ($item->purchase) {
+            return redirect()->route('item.show', $item_id);
+        }
+
         $validated = $request->validated();
         $profile = Auth::user()->profile;
 

@@ -188,6 +188,11 @@
     opacity: 0.85;
 }
 
+.item-detail__purchase-btn--sold {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
 /* セクション見出し */
 .item-detail__section-title {
     font-size: 18px;
