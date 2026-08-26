@@ -11,7 +11,7 @@
             class="item-list__tab-item {{ !request('tab') ? 'item-list__tab-item--active' : '' }}">
             おすすめ
         </a>
-        <a href="{{ url('/?tab=mylist') }}"
+        <a href="{{ url('/?tab=mylist&keyword=' . request('keyword')) }}"
             class="item-list__tab-item {{ request('tab') === 'mylist' ? 'item-list__tab-item--active' : '' }}">
             マイリスト
         </a>

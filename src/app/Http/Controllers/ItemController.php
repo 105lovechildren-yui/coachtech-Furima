@@ -29,11 +29,16 @@ class ItemController extends Controller
             if (Auth::check()) {
                 // ログインしている場合は、自分がいいねした商品を取得
                 $items = Item::with('purchase')
-                ->whereHas('likes', function ($query) {
-                    $query->where('user_id', Auth::id());
-                })
-                    ->where('user_id', '!=', Auth::id())
-                    ->get();
+                    ->whereHas('likes', function ($query) {
+                        $query->where('user_id', Auth::id());
+                    })
+                    ->where('user_id', '!=', Auth::id());
+
+                if ($keyword) {
+                    $items->where('name', 'like', '%' . $keyword . '%');
+                }
+
+                $items = $items->get();
             } else {
                 // ログインしていない場合は、ログイン画面にリダイレクトする
                 return redirect()->route('login');
