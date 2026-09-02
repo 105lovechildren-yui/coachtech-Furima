@@ -78,4 +78,15 @@
         </div>
     </form>
 </div>
+
+<script>
+    const paymentSelect = document.querySelector('.purchase__select');
+    const paymentSummary = document.querySelector('.purchase__summary-payment');
+
+    paymentSelect.addEventListener('change', function() {
+        const selectedValue = paymentSelect.value;
+
+        paymentSummary.textContent = paymentSelect.options[paymentSelect.selectedIndex].text;
+    });
+</script>
 @endsection
