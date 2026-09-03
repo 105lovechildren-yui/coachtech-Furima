@@ -76,6 +76,10 @@ return [
 
     'home' => RouteServiceProvider::HOME,
 
+    'redirects' => [
+        'register' => '/email/verify',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Fortify Routes Prefix / Subdomain
@@ -147,7 +151,7 @@ return [
     'features' => [
         Features::registration(),
         Features::resetPasswords(),
-        // Features::emailVerification(),
+        Features::emailVerification(),
         Features::updateProfileInformation(),
         Features::updatePasswords(),
         Features::twoFactorAuthentication([
