@@ -78,6 +78,7 @@ return [
 
     'redirects' => [
         'register' => '/email/verify',
+        'email-verification' => '/mypage/profile',
     ],
 
     /*
