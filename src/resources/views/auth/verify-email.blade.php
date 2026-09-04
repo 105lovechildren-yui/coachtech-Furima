@@ -11,11 +11,11 @@
         メール認証を完了してください。
     </div>
 
-    <button
-        class="auth__button auth__button--verification"
-        type="button">
+    <a
+        href="http://localhost:8025"
+        class="auth__button auth__button--verification">
         認証はこちらから
-    </button>
+    </a>
     {{-- TODO: 認証処理および遷移先を実装 --}}
 
     <div class="auth__resend">

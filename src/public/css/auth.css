@@ -98,6 +98,8 @@
     margin: 0 auto 48px;
     border: 1px solid #000;
     padding: 12px 0;
+    text-align: center;
+    text-decoration: none;
 }
 
 .auth__resend {
