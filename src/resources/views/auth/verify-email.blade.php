@@ -16,14 +16,17 @@
         class="auth__button auth__button--verification">
         認証はこちらから
     </a>
-    {{-- TODO: 認証処理および遷移先を実装 --}}
+
 
     <div class="auth__resend">
-        <button
-            class="auth__resend-link"
-            type="button">
-            認証メールを再送する
-        </button>
+        <form action="{{ route('verification.send') }}" method="POST">
+            @csrf
+            <button
+                class="auth__resend-link"
+                type="submit">
+                認証メールを再送する
+            </button>
+        </form>
     </div>
     {{-- TODO: 認証メール再送処理を実装 --}}
 </div>
