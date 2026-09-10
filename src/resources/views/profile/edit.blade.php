@@ -13,10 +13,10 @@
         <div class="auth__form-group">
             <div class="auth__image-box">
                 {{-- 現在の画像 あれば表示、なければグレーの丸を表示 --}}
-                @if(optional($user->profile)->image_url)
+                @if(optional($user->profile)->profile_image)
                 <img
                     class="auth__image"
-                    src="{{ asset('storage/' . optional($user->profile)->image_url) }}"
+                    src="{{ asset('storage/' . optional($user->profile)->profile_image) }}"
                     alt="プロフィール画像">
                 @else
                 <div class="auth__image auth__image--empty"></div>
@@ -32,7 +32,9 @@
                         id="profile_image"
                         name="profile_image"
                         hidden>
-
+                    @error('profile_image')
+                    <p class="auth__error">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -46,7 +48,9 @@
                 name="nickname"
                 value="{{ old('nickname', optional($user->profile)->nickname) }}"
                 autocomplete="name">
-            {{-- TODO: バリデーション実装 --}}
+            @error('nickname')
+            <p class="auth__error">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="auth__form-group">
@@ -58,7 +62,9 @@
                 name="postal_code"
                 value="{{ old('postal_code', optional($user->profile)->postal_code) }}"
                 autocomplete="postal-code">
-            {{-- TODO: バリデーション実装 --}}
+            @error('postal_code')
+            <p class="auth__error">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="auth__form-group">
@@ -70,19 +76,23 @@
                 name="address"
                 value="{{ old('address', optional($user->profile)->address) }}"
                 autocomplete="address-line1">
-            {{-- TODO: バリデーション実装 --}}
+            @error('address')
+            <p class="auth__error">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="auth__form-group">
-            <label class="auth__label" for="building_name">建物名</label>
+            <label class="auth__label" for="building">建物名</label>
             <input
                 class="auth__input"
                 type="text"
-                id="building_name"
-                name="building_name"
-                value="{{ old('building_name', optional($user->profile)->building_name) }}"
+                id="building"
+                name="building"
+                value="{{ old('building', optional($user->profile)->building) }}"
                 autocomplete="address-line2">
-            {{-- TODO: バリデーション実装 --}}
+            @error('building')
+            <p class="auth__error">{{ $message }}</p>
+            @enderror
         </div>
 
 

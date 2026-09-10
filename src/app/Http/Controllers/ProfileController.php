@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Requests\ProfileRequest;
 
 class ProfileController extends Controller
 {
@@ -19,7 +18,7 @@ class ProfileController extends Controller
 
             $items = $purchases->map(function ($purchase) {
                 return $purchase->item;
-        });
+            });
         } else {
             //出品した商品
             $items = $user->items;
@@ -37,30 +36,41 @@ class ProfileController extends Controller
     }
 
     //プロフィール更新処理
-    public function update(Request $request)
+    public function update(ProfileRequest $request)
     {
         /** @var \App\Models\User $user */
         $user = Auth::user();
 
         $profile = $user->profile;
 
+        $validated = $request->validated();
+
         if ($profile === null) {
             $profile = $user->profile()->create([
-                'nickname' => $request->input('nickname'),
-                'postal_code' => $request->input('postal_code'),
-                'address' => $request->input('address'),
-                'building' => $request->input('building'),
-                'profile_image' => $request->file('profile_image') ? $request->file('profile_image')->store('profile_images', 'public') : null,
+                'nickname' => $validated['nickname'],
+                'postal_code' => $validated['postal_code'],
+                'address' => $validated['address'],
+                'building' => $validated['building'] ?? null,
+                'profile_image' => $request->file('profile_image')
+                    ? $request->file('profile_image')->store('profile_images', 'public')
+                    : null,
             ]);
         } else {
-            $profile->nickname = $request->input('nickname');
-            $profile->postal_code = $request->input('postal_code');
-            $profile->address = $request->input('address');
-            $profile->building = $request->input('building');
-            $profile->profile_image = $request->file('profile_image') ? $request->file('profile_image')->store('profile_images', 'public') : $profile->profile_image;
+            $profile->nickname = $validated['nickname'];
+            $profile->postal_code = $validated['postal_code'];
+            $profile->address = $validated['address'];
+            $profile->building = $validated['building'] ?? null;
+
+            if ($request->file('profile_image')) {
+                $profile->profile_image = $request->file('profile_image')
+                    ->store('profile_images', 'public');
+            }
+
             $profile->save();
         }
 
-        return redirect()->route('item.index')->with('success', 'プロフィールを更新しました。');
+        return redirect()
+            ->route('item.index')
+            ->with('success', 'プロフィールを更新しました。');
     }
 }

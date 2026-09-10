@@ -13,12 +13,15 @@
             <label class="auth__label" for="email">メールアドレス</label>
             <input
                 class="auth__input"
-                type="email"
+                type="text"
                 id="email"
                 name="email"
                 value="{{ old('email') }}"
                 autocomplete="email">
-            {{-- TODO: バリデーション実装 --}}
+
+            @error('email')
+            <p class="auth__error">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="auth__form-group">
@@ -29,14 +32,19 @@
                 id="password"
                 name="password"
                 autocomplete="current-password">
-            {{-- TODO: バリデーション実装 --}}
+
+            @error('password')
+            <p class="auth__error">{{ $message }}</p>
+            @enderror
         </div>
 
         <button class="auth__button" type="submit">ログインする</button>
     </form>
 
     <div class="auth__register">
-        <a class="auth__register-link" href="{{ route('register') }}">会員登録はこちら</a>
+        <a class="auth__register-link" href="{{ route('register') }}">
+            会員登録はこちら
+        </a>
     </div>
 </div>
 @endsection

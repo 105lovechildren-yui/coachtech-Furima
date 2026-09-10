@@ -18,19 +18,25 @@
                 name="name"
                 value="{{ old('name') }}"
                 autocomplete="name">
-            {{-- TODO: バリデーション実装 --}}
+
+            @error('name')
+            <p class="auth__error">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="auth__form-group">
             <label class="auth__label" for="email">メールアドレス</label>
             <input
                 class="auth__input"
-                type="email"
+                type="text"
                 id="email"
                 name="email"
                 value="{{ old('email') }}"
                 autocomplete="email">
-            {{-- TODO: バリデーション実装 --}}
+
+            @error('email')
+            <p class="auth__error">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="auth__form-group">
@@ -41,25 +47,37 @@
                 id="password"
                 name="password"
                 autocomplete="new-password">
-            {{-- TODO: バリデーション実装 --}}
+
+            @error('password')
+            <p class="auth__error">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="auth__form-group">
-            <label class="auth__label" for="password_confirmation">パスワード確認</label>
+            <label class="auth__label" for="password_confirmation">
+                パスワード確認
+            </label>
             <input
                 class="auth__input"
                 type="password"
                 id="password_confirmation"
                 name="password_confirmation"
                 autocomplete="new-password">
-            {{-- TODO: バリデーション実装 --}}
+
+            @error('password_confirmation')
+            <p class="auth__error">{{ $message }}</p>
+            @enderror
         </div>
 
-        <button class="auth__button" type="submit">会員登録する</button>
+        <button class="auth__button" type="submit">
+            会員登録する
+        </button>
     </form>
 
     <div class="auth__register">
-        <a class="auth__register-link" href="{{ route('login') }}">ログインはこちら</a>
+        <a class="auth__register-link" href="{{ route('login') }}">
+            ログインはこちら
+        </a>
     </div>
 </div>
 @endsection
