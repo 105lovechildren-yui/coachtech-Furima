@@ -12,10 +12,25 @@
         {{-- 商品画像 --}}
         <div class="sell__section">
             <p class="sell__label">商品画像</p>
+
             <div class="sell__image-box">
-                {{-- TODO: 画像アップロード処理 --}}
-                <button type="button" class="sell__image-button">画像を選択する</button>
-                <input type="file" name="image" class="sell__input" accept="image/*">
+                <img
+                    id="image-preview"
+                    class="sell__image-preview"
+                    src=""
+                    alt=""
+                    style="display: none;">
+
+                <label for="image" class="sell__image-button">
+                    画像を選択する
+                </label>
+
+                <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    class="sell__input"
+                    accept="image/*">
             </div>
         </div>
 
@@ -82,12 +97,34 @@
         </div>
 
         {{-- 出品ボタン --}}
-        {{-- TODO: 保存処理はControllerフェーズで実装 --}}
         <div class="sell__field">
             <button type="submit" class="sell__submit">出品する</button>
         </div>
 
     </form>
 </div>
+
+<script>
+    const imageInput = document.getElementById('image');
+    const imagePreview = document.getElementById('image-preview');
+    const imageBox = document.querySelector('.sell__image-box');
+
+    imageInput.addEventListener('change', function() {
+        const file = this.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                imagePreview.src = event.target.result;
+                imagePreview.style.display = 'block';
+                document.querySelector('.sell__image-button').style.display = 'none';
+                imageBox.style.border = 'none';
+            };
+
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 
 @endsection
