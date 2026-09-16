@@ -84,6 +84,15 @@ sudo chmod -R 775 src
 - メールアドレス：buyer@example.com
 - パスワード：password
 
+## テスト
+
+PHPUnitを実行
+
+```bash
+docker-compose exec php php artisan test
+```
+
+
 ## 開発環境
 
 ・ログインページ:http://localhost/login
