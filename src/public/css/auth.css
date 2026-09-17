@@ -114,3 +114,12 @@
     font-size: 1rem;
     padding: 0;
 }
+
+.auth__title--profile {
+    font-size: 1.75rem;
+}
+
+.auth__image-label--profile {
+    font-size: 14px;
+    padding: 6px 12px;
+}

@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="auth">
-    <h2 class="auth__title">プロフィール設定</h2>
+    <h2 class="auth__title auth__title--profile">プロフィール設定</h2>
 
     <form class="auth__form" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -25,7 +25,9 @@
                 {{-- 新しく画像を選択 --}}
                 <div class="auth__image-group">
 
-                    <label class="auth__label auth__image-label" for="profile_image">画像を選択する</label>
+                    <label class="auth__label auth__image-label auth__image-label--profile" for="profile_image">
+                        画像を選択する
+                    </label>
 
                     <input
                         type="file"
