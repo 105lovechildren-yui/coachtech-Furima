@@ -100,10 +100,18 @@
             @foreach ($item->comments as $comment)
             <div class="item-detail__comment">
                 <div class="item-detail__comment-user">
-                    {{-- TODO: ユーザーのアバター画像を表示する --}}
-                    <img class="item-detail__comment-avatar" src="" alt="ユーザーアバター">
+                    @if(optional($comment->user->profile)->profile_image)
+                    <img
+                        class="item-detail__comment-avatar"
+                        src="{{ asset('storage/' . optional($comment->user->profile)->profile_image) }}"
+                        alt="ユーザーアバター">
+                    @else
+                    <div class="item-detail__comment-avatar item-detail__comment-avatar--empty"></div>
+                    @endif
+
                     <span class="item-detail__comment-username">{{ $comment->user->name }}</span>
                 </div>
+
                 <p class="item-detail__comment-body">{{ $comment->content }}</p>
             </div>
             @endforeach
