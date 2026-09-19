@@ -84,6 +84,18 @@ sudo chmod -R 775 src
 - メールアドレス：buyer@example.com
 - パスワード：password
 
+## メール認証機能
+
+会員登録後、MailHogで認証メールを確認できます。
+
+### 確認方法
+
+1. `/register` から新規会員登録を行う
+2. メール認証誘導画面が表示されることを確認する
+3. MailHog（http://localhost:8025）を開く
+4. MailHog内に届いた認証メールを開き、メール本文に記載された認証リンクをクリックする
+5. メール認証完了後、プロフィール設定画面へ遷移することを確認する
+
 ## テスト
 
 PHPUnitを実行
@@ -91,7 +103,6 @@ PHPUnitを実行
 ```bash
 docker-compose exec php php artisan test
 ```
-
 
 ## 開発環境
 
