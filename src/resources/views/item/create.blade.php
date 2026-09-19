@@ -6,7 +6,7 @@
 <div class="sell">
     <h1 class="sell__title">商品の出品</h1>
 
-    <form action="{{ route('item.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('item.store') }}" method="POST" enctype="multipart/form-data" novalidate>
         @csrf
 
         {{-- 商品画像 --}}
@@ -32,6 +32,10 @@
                     class="sell__input"
                     accept="image/*">
             </div>
+            @error('image')
+            <p class="sell__error">{{ $message }}</p>
+            @enderror
+
         </div>
 
         {{-- 商品の詳細 --}}
@@ -52,6 +56,9 @@
                     </li>
                     @endforeach
                 </ul>
+                @error('categories')
+                <p class="sell__error">{{ $message }}</p>
+                @enderror
             </div>
 
             {{-- 商品の状態 --}}
@@ -65,6 +72,9 @@
                     </option>
                     @endforeach
                 </select>
+                @error('condition_id')
+                <p class="sell__error">{{ $message }}</p>
+                @enderror
             </div>
         </div>
 
@@ -76,6 +86,9 @@
                 <label class="sell__label" for="name">商品名</label>
                 <input type="text" name="name" id="name" class="sell__input" value="{{ old('name') }}">
             </div>
+            @error('name')
+            <p class="sell__error">{{ $message }}</p>
+            @enderror
 
             <div class="sell__field">
                 <label class="sell__label" for="brand">ブランド名</label>
@@ -86,6 +99,9 @@
                 <label class="sell__label" for="description">商品の説明</label>
                 <textarea name="description" id="description" class="sell__textarea">{{ old('description') }}</textarea>
             </div>
+            @error('description')
+            <p class="sell__error">{{ $message }}</p>
+            @enderror
 
             <div class="sell__field">
                 <label class="sell__label" for="price">販売価格</label>
@@ -94,6 +110,9 @@
                     <input type="number" name="price" id="price" class="sell__input" value="{{ old('price') }}">
                 </div>
             </div>
+            @error('price')
+            <p class="sell__error">{{ $message }}</p>
+            @enderror
         </div>
 
         {{-- 出品ボタン --}}
